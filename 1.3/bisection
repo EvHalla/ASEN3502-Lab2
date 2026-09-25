@@ -1,0 +1,29 @@
+function [x, info] = bisection(f, fprime, interval, atol, maxit]
+info = struct();
+
+a = interval(1);
+b = interval(2);
+
+x1 = a;
+f1 = f(x1);
+
+for k = 1:maxit
+    x2 = x1+dx;
+    f2 = f(x2);
+
+    if abs(f2) < atol
+        x = x2;
+        return
+    end
+
+    if f1*f2 < 0
+        x = (x1+x2)?2
+        return
+    end
+
+    x1 = x2;
+    f1 = f2;
+end
+error('No root found in interval')
+end
+
