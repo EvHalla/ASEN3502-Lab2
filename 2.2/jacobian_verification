@@ -1,0 +1,19 @@
+f = @(x)[x(1)^2*x(2) - 1 ; x(1) + x(2)^3 - 2];
+Jactual = @(x)[ 2*x(1)*x(2) , x(1)^2 ;
+                1           , 3*x(2)^2 ]; 
+
+h = 1e-8
+tolerance = 1e-6
+
+test_points = [1   2    -1.5   0.3;
+               1  -0.5   2     4  ];
+
+for k = 1:size(test_points);
+    x = test_points(:, k);
+    Jnum = numjac(f,x,h);
+    Jtrue = Jactual(x);
+    relative_err = norm(Jnum - Jtrue, 'fro') / max(norm(Jtrue, 'fro'), eps);
+
+ fprintf('x = [%6.2f, %6.2f]   relative error = %.2e\n', x(1), x(2), relative_err);
+    assert(rel_err < tolerance, 'numjac failed at test point %d', k);
+end
