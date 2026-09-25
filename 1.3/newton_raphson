@@ -1,0 +1,24 @@
+function [x, info] = newton_raphson(f, fprime, interval, atol, maxit]
+info = struct();
+
+x = interval(1);
+
+for k = 1:maxit
+
+    fp = fprime(x);
+
+    if fp == 0
+        error('Derivative is zero :(')
+    end
+    xnew = x - f(x)/fp;
+
+    if abs(xnew-x) <+ atol
+        x = xnew;
+        return
+    end
+
+    x = xnew;
+end
+
+error('Newton-Raphson did not converge')
+end
