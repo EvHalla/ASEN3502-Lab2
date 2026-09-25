@@ -1,0 +1,50 @@
+function [x, info] = incremental_search(f, fprime, interval, atol, maxit)
+
+
+xmin = interval(1);
+xmax = interval(2);
+
+n = maxit;
+dx = (xmax - xmin)/n;
+brackets = [];
+
+
+xl = xmin;
+
+% Count function evaluations
+funcCount = 0;
+
+for k = 1:n
+
+    % Upper bound of current interval
+    xu = xl + dx;
+
+    % Evaluate function
+    fl = f(xl);
+    fu = f(xu);
+
+    funcCount = funcCount + 2;
+
+    % Check for sign change
+    if fl*fu < 0
+
+        % Root is bracketed between xl and xu
+        brackets = [brackets; xl, xu];
+
+    end
+
+    % Move to next interval
+    xl = xu;
+
+end
+
+% Return brackets
+x = brackets;
+
+% Information structure
+info.iterations = n;
+info.funcCount = funcCount;
+info.dx = dx;
+info.brackets = brackets;
+
+end
