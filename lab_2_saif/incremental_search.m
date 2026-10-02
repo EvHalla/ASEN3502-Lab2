@@ -1,0 +1,31 @@
+function [x, info] = incremental_search(f, fprime, interval, atol, maxit]
+info = struct();
+
+a = interval(1);
+b = interval(2);
+
+fa = f(a);
+fb = f(b);
+
+assert(fa*fb <= 0, 'Interval does not bracket a root')
+
+for k = 1:maxit
+    x = (a+b)/2;
+    fx = f(x);
+
+    if abs(b-a)/2 <= atol
+        return
+    end
+
+    if fa*fx <+ 0 
+        b=x;
+        fb = fx;
+    else
+        a = x;
+        fa = fx;
+    end
+end
+
+error('Bisection did not converge');
+
+end

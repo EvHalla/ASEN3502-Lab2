@@ -1,0 +1,5 @@
+function [output] = shock_refraction_residual(phi, thetaC, thetaD, M2, M3, deltaA, deltaB, p2p1, p3p1)
+output = [0,0,0];
+
+C = (M2^2 * sin(2*thetaC) - 2*cot(thetaC))/2+M2^2*(1.4+cos(2*thetaC)) - tan
+

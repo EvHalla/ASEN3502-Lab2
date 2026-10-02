@@ -1,0 +1,32 @@
+function [x, info] = secant(f, fprime, interval, atol, maxit)
+
+info = struct();
+
+x0 = interval(1);
+x1 = interval(2);
+ f0 = f(x0);
+ f1 = f(x1);
+
+ for k = 1:maxit
+
+     if f1 == f0
+         error('0 denominator uh oh')
+     end
+     x2 = x1 - f1*(x1-x0)/(f1-f0);
+
+     if abs(x2-x1) <= atol
+         x = x2;
+         return
+     end
+
+     x0 = x1;
+
+    f0 = f1;
+
+    x1 = x2;
+    f1 = f(x1);
+
+ end
+
+ error('Secant method didnt converge');
+end
