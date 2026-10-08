@@ -8,7 +8,7 @@ for i = 1:4
     delta = pi/4 * i/4;
     check = shock_derivative(delta, theta, M) - ((shock_residual(delta, M, theta + h) - shock_residual(delta, M, theta)) / h);
 
-    if(check > e)
+    if abs(check) > e
         error("derivative failure")
     else
         disp("works!")
