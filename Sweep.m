@@ -1,3 +1,5 @@
+ShockAngle;
+
 % Sweep Newton initial guess from mu to 90 deg
 mu = asin(1 / M);
 theta0Grid = linspace(mu, pi / 2, 200);
