@@ -14,7 +14,7 @@ for k = 1:numel(deltaDeg)
     delta = deg2rad(deltaDeg(k));
 
     for i = 1:numel(theta)
-        f(i) = Shock_residual(delta, theta(i), M);
+        f(i) = shock_residual(delta, theta(i), M);
     end
 
     plot(thetaDeg, f);
