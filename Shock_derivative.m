@@ -1,4 +1,4 @@
-function fprime = Shock_prime(theta, M)
+function fprime = Shock_derivative(theta, M)
 gamma = 1.4;
 
 N = M^2 * sin(2 * theta) - 2 * cot(theta);
