@@ -11,7 +11,7 @@ test_points = [1   2    -1.5   0.3;
 
 for k = 1:size(test_points, 2)
     x = test_points(:, k);
-    Jnum = Numjac(f,x,h);
+    Jnum = numjac(f,x,h);
     Jtrue = Jactual(x);
     relative_err = norm(Jnum - Jtrue, 'fro') / max(norm(Jtrue, 'fro'), eps);
 
