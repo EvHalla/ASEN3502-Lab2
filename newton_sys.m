@@ -15,3 +15,4 @@ for iteration = 1:maxit
     x = x + dx;
 end
 
+error('newton_sys did not converge in %d iterations', maxit);
